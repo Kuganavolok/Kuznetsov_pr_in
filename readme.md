@@ -34,9 +34,10 @@ tracking their implementation by the performer.
 ##Screenshots
 
 ---
-* ![Home screen](/Screenshots/Home.PNG)
-* ![Admin screen](/Screenshots/Create.PNG)
-* ![Performer screen](/Screenshots/Active.PNG)
+![Home screen](/Screenshots/Home.PNG)
+</br>
+![Admin screen](/Screenshots/Create.PNG)
+![Performer screen](/Screenshots/Active.PNG)
 
 ##Setup
 
