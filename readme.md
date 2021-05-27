@@ -31,15 +31,15 @@ tracking their implementation by the performer.
 * PHP 7
 * Xampp with phpMyAdmin
 
-##Screenshots
+## Screenshots
 
 ---
 ![Home screen](/Screenshots/Home.PNG)
-</br>
-![Admin screen](/Screenshots/Create.PNG)
 ![Performer screen](/Screenshots/Active.PNG)
+![Admin screen](/Screenshots/Create.PNG)
 
-##Setup
+
+## Setup
 
 ---
 * start the local server (xampp)
