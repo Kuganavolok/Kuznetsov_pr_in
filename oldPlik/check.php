@@ -1,4 +1,4 @@
-<?php
+<?php //не используется
 
 $login = filter_var(trim($_GET['login']));
 $pass = filter_var(trim($_GET['pass']));
@@ -23,7 +23,7 @@ if(mb_strlen($login) < 2 || mb_strlen($login) > 20){
     VALUES('$login','$pass','$name')");
     $mysql->close();
 
-header('Location:/Kuznetsov_pr_in/authorization.html');
+header('Location:/Kuznetsov_pr_in/authorization.php');
 
 
 

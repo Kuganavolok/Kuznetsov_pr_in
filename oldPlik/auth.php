@@ -1,4 +1,4 @@
-<?php
+<?php //не используется
 $login = filter_var(trim($_GET['login']));
 $pass = filter_var(trim($_GET['pass']));
 

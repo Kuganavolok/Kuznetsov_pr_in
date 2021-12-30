@@ -1,102 +1,145 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Your Account</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
-          rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
-          crossorigin="anonymous">
-</head>
-<body>
-
-
-<div class="container mt-4">
-<a href="HomeSceen.php">Home screen</a>
-    <br>
-    <?php
-    $First= $_COOKIE['user'];
-    print_r("Hi, ".$First."!");
-    ?>
-
-
-
-
-</div>
 <?php
-$performer=$_COOKIE['user'];
-$mysql = new mysqli('localhost','root','','todoit');
-$result = $mysql->query("SELECT * FROM `tasks` WHERE `user` = '$performer' ");
-$mysql->close();
+$title = "Ekran użytkownika";
+require __DIR__ . "/head.php";
+require "dbconnect.php";
 ?>
-<h1>Active tasks</h1>
-<div>
-    <table class="table table-striped table-bordered" >
-        <tr>
-            <th>task</th><th>date</th>
-        </tr>
-        <?php
-        while($TasksList = $result->fetch_assoc()) { ?>
-            <tr>
+<div class="container-fluid overflow-hidden">
+    <div class="row"><br></div>
+    <div class="row gx-5">
+        <div class="col-md-1">
+        </div>
+        <div class="col-md-3 border bg-light text-center">
+            <a href="homeScreen.php">Powrót do ekranu głównego</a><br>
 
-                <td><?php echo $TasksList['tasks']; ?></td><td><?php echo $TasksList['date']; ?></td>
-            </tr>
-        <?php } ?>
+        </div>
+        <div class="col-md-4 border bg-light text-center">
+            <?php $user=$_SESSION['logged_user']->name;
+            print_r("Cześć, ".$user."!");
+            ?>
+        </div>
+        <div class="col-md-3 border bg-light text-center">
+            <a href="logout.php">Wyloguj się z profilu</a>
+            <br><br>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+    <div class="row">
+        <br>
+    </div>
 
-    </table>
+    <div class="row gx-5">
+        <div class="col-md-1"></div>
+        <div class="col-md-4" style="background-color: rgba(0,0,0,0.05)">
 
-</div>
+            <div class="row">
+                <?php
+                $performer = $_SESSION['logged_user']->name;
+                $mysql = new mysqli('localhost','root','','mybase');
+                $result = $mysql->query("SELECT * FROM `step` WHERE `performer` = '$performer' AND `step`= 'do wykonywania' OR `performer`='$performer' AND `step`='w trakcie'");
+                $mysql->close();
+                ?>
+                <form action="didIt.php" method="post">
+                    <div class="mb-3">
+                        <label for="note" class="form-label"><h5>Komentarż do zadania</h5></label>
+                        <textarea class="form-control" id="note" name="note" rows="5"></textarea>
+                    </div>
+                    <select name="tasks" id="tasks" style="width: 200px;height: 40px">
+                        <option selected disabled>zadanie</option>
+                        <?php while ($task = $result->fetch_assoc()) { ?>
+                            <option value ="<?php echo $task['tasks']; ?>"><?php echo $task['tasks'];  ?></option>
+                        <?php } ?>
+                    </select>
+                    <input name="date" id="date" type="date" style="width: 200px;height: 40px">
+                    <select name="step" id="step" style="width: 200px;height: 40px">
+                        <option>w trakcie</option>
+                        <option>wykonane</option>
+                    </select><br><br>
+                    <button class="btn btn-success" style="width: 100px;height: 40px">Zmiana</button>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-6" style="background-color: rgba(0,0,0,0.06)">
+            <div class="row">
+                <?php
+                $performer=$_SESSION['logged_user']->name;
+                $mysql = new mysqli('localhost','root','','mybase');
+                $result = $mysql->query("SELECT * FROM `step` WHERE `step` = 'do wykonywania' AND `performer` = '$performer'");
+                $mysql->close();
+                ?>
+                <table class="table table-striped table-bordered" style="background-color: rgba(246,0,0,0.1)" >
+                    <caption-top><h5>Aktywne zadania</h5></caption-top>
+                    <thead class="table-dark">
+                    <th style="width: 100px">date</th>
+                    <th>zadanie</th>
+                    </thead>
+                    <?php
+                    while($TasksList = $result->fetch_assoc()) { ?>
+                        <tr>
+                            <td><?php echo $TasksList['date']; ?></td>
+                            <td><?php echo $TasksList['tasks']; ?></td>
+                        </tr>
+                    <?php } ?>
+                </table>
+            </div>
+
+            <div class="row">
+                <?php
+                $performer=$_SESSION['logged_user']->name;
+                $mysql = new mysqli('localhost','root','','mybase');
+                $result = $mysql->query("SELECT * FROM `step` WHERE `step` = 'w trakcie' AND `performer` = '$performer' ");
+                $mysql->close();
+                ?>
+                <table class="table table-striped table-bordered" style="background-color: rgba(111,164,255,0.2)">
+                    <caption-top><h5>W trakcie</h5></caption-top>
+                    <thead class="table-dark">
+                    <th style="width: 100px">data</th>
+                    <th>zadanie</th>
+                    <th>komentaż</th>
+                    </thead>
+                    <?php
+                    while($TasksList = $result->fetch_assoc()) { ?>
+                        <tr>
+                            <td><?php echo $TasksList['date']; ?></td>
+                            <td><?php echo $TasksList['tasks']; ?></td>
+                            <td><?php echo $TasksList['note']; ?></td>
+                        </tr>
+                    <?php } ?>
+                </table>
+            </div>
+            <div class="row">
+                <?php
+                $performer=$_SESSION['logged_user']->name;//$_COOKIE['user'];
+                $mysql = new mysqli('localhost','root','','mybase');
+                $result = $mysql->query("SELECT * FROM `step` WHERE `step` = 'wykonane' AND `performer` = '$performer'");
+                $mysql->close();
+                ?>
+
+                <table class="table table-striped table-bordered" style="background-color: rgba(37,229,91,0.2)" >
+                    <caption-top><h5>Wykonane zadania</h5></caption-top>
+                    <thead class="table-dark">
+                    <th style="width: 100px">data</th>
+                    <th>zadanie</th>
+                    <th>komentaż</th>
+                    </thead>
+                    <?php
+                    while($TasksList = $result->fetch_assoc()) { ?>
+                        <tr>
+                            <td><?php echo $TasksList['date']; ?></td>
+                            <td><?php echo $TasksList['tasks']; ?></td>
+                            <td><?php echo $TasksList['note']; ?></td>
+
+                        </tr>
+                    <?php } ?>
+                </table>
+            </div>
+
+
+         </div>
+
+    </div>
+
+
+
 <?php
-$performer=$_COOKIE['user'];
-$mysql = new mysqli('localhost','root','','todoit');
-$result = $mysql->query("SELECT * FROM `tasks` WHERE `user` = '$performer' ");
-$mysql->close();
+require __DIR__ . "/foot.php";
 ?>
-<form action="DidIt.php" method="get">
-
-
-    <select name="tasks" id="tasks" >
-        <option disabled>choose task</option>
-        <?php while ($task = $result->fetch_assoc()) { ?>
-            <option value ="<?php echo $task['tasks']; ?>"><?php echo $task['tasks'];  ?></option>
-        <?php } ?>
-    </select >
-    <input name="date" id="date" type="date" >
-    <button class="btn btn-success">I did it!</button>
-
-
-
-</form>
-
-
-
-
-
-
-
-
-
-<?php
-$performer=$_COOKIE['user'];
-$mysql = new mysqli('localhost','root','','todoit');
-$result = $mysql->query("SELECT * FROM `completed tasks` WHERE `performer` = '$performer' ");
-$mysql->close();
-?>
-<h1>Completed tasks</h1>
-<div>
-    <table class="table table-striped table-bordered" >
-        <tr>
-            <th>task</th><th>date</th>
-        </tr>
-        <?php
-        while($TasksList = $result->fetch_assoc()) { ?>
-            <tr>
-
-                <td><?php echo $TasksList['tasks']; ?></td><td><?php echo $TasksList['date']; ?></td>
-            </tr>
-        <?php } ?>
-
-    </table>
-</div>
-
-</body>
-</html>
