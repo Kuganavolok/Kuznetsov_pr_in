@@ -34,12 +34,12 @@ tracking their implementation by the performer.
 
 ## Screenshots
 
-![Start](/Screenshots/Index.PNG)
-![Home screen](/Screenshots/Home.PNG)
-![Registration](/Screenshots/Registration.PNG)
-![Authorization](/Screenshots/Authorization.PNG)
-![Performer screen](/Screenshots/Active.PNG)
-![Admin screen](/Screenshots/Create.PNG)
+![Start](/Screenshots/Index.png)
+![Home screen](/Screenshots/Home.png)
+![Registration](/Screenshots/Registration.png)
+![Authorization](/Screenshots/Authorization.png)
+![Performer screen](/Screenshots/Active.png)
+![Admin screen](/Screenshots/Create.png)
 
 
 ## Setup
