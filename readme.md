@@ -30,11 +30,14 @@ tracking their implementation by the performer.
 * Bootstrap 3 or 4
 * PHP 7
 * Xampp with phpMyAdmin
+* RedBeanPhp
 
 ## Screenshots
 
-
+![Start](/Screenshots/Index.PNG)
 ![Home screen](/Screenshots/Home.PNG)
+![Registration](/Screenshots/Registration.PNG)
+![Authorization](/Screenshots/Authorization.PNG)
 ![Performer screen](/Screenshots/Active.PNG)
 ![Admin screen](/Screenshots/Create.PNG)
 
@@ -44,7 +47,7 @@ tracking their implementation by the performer.
 
 * start the local server (xampp)
 * run SQL
-* unpack *baza.7z* from the **db** folder and perform the import to the required directory in phpmyadmin
+* create SQL for RedBeanPhp
 * open and run the project in PhpStorm
 
 ## Status
