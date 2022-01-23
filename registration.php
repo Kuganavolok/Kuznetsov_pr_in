@@ -3,7 +3,7 @@ $title = "Formularz rejestracji nowego użytkownika";
 require __DIR__ . "/head.php";
 require "dbconnect.php";
 
-$data = $_POST; //zmienna do zbierania błędów
+$data = $_POST;
 if(isset($data['do'])){
     $errors = array(); //masyw do zbierania błędów
     if(trim($data['login']) == '') {
@@ -37,7 +37,7 @@ if(isset($data['do'])){
         $errors[] = "Nieprawidłowo wpisany e-mail";
     }
     if(R::count('users',"login = ?", array($data['login'])) > 0){
-        $errors[] = "Użytkownik z takim e-mailem istnieje!";
+        $errors[] = "Użytkownik z takim login istnieje!";
     }
     // Wszystko sprawdzone, rejestrujemy
     // Tworzymy tabelę users
@@ -73,7 +73,7 @@ if(isset($data['do'])){
             </form>
             <br>
             <p>Masz już konto? Kliknij  <a href="authorization.php">tutaj</a>.</p>
-            <p>Powrót do ekranu <a href="homeScreen.php">głównego</a>.</p>
+            <p>Powrót do ekranu <a href="index.php">głównego</a>.</p>
         </div>
     </div>
 </div>

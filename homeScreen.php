@@ -32,15 +32,15 @@ require "dbconnect.php";
     </div>
     <div class="row gx-5" >
         <div class="col-md-1"></div>
-        <div class="col-md-5" style="background-color: rgba(210,191,67,0.27)">
+        <div class="col-md-5" style="background-color: rgba(210,191,67,0.18)">
             <div class="row">
                 <br>
             </div>
             <div class="row">
-                  <table class="table table-bordered">
+                  <table class="table table-bordered table-striped">
                     <caption-top><h5>Projekt:</h5></caption-top>
                     <tr>
-                        <td>Naprawa Audi A3 (GD1313PL)</td>
+                        <td>Naprawa rowera Romet</td>
                     </tr>
                   </table>
             </div>
@@ -50,7 +50,7 @@ require "dbconnect.php";
                     $result = $mysql->query("SELECT * FROM `users` WHERE `login` = 'Admin'");
                     $mysql->close();
                     ?>
-                    <table class="table table-bordered">
+                    <table class="table table-bordered table-striped">
                         <caption-top><h5>Menedżer proekta:</h5></caption-top>
                         <?php while($TasksList = $result->fetch_assoc()) { ?>
                             <tr>
@@ -73,7 +73,7 @@ require "dbconnect.php";
                     $result = $mysql->query("SELECT * FROM `users`");
                     $mysql->close();
                     ?>
-                    <table class="table table-bordered">
+                    <table class="table table-bordered table-striped">
                         <caption-top><h5>Zespól projekta</h5></caption-top>
                         <?php while($TasksList = $result->fetch_assoc()) { ?>
                             <tr>

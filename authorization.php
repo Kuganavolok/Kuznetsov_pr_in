@@ -49,7 +49,7 @@ if(isset($data['do_login'])){
             </form>
             <br>
             <p>Jeśli nie jesteś jeszcze zarejestrowany, kliknij  <a href="registration.php">tutaj</a>.</p>
-            <p>Powrót do ekranu <a href="homeScreen.php">głównego</a>.</p>
+            <p>Powrót do ekranu <a href="index.php">głównego</a>.</p>
         </div>
     </div>
 </div>
